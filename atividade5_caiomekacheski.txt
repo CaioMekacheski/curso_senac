@@ -1,0 +1,70 @@
+use atividade5;
+
+'switched to db atividade5'
+
+
+db.funcionario.insertMany
+([
+	{
+		nome: "Caio Cesar", 
+		telefone: "139996660000", 
+		cpf: "66699966699", 
+		cargo: {descricao: "frentista", salario: 1830.00, comissao: 3.0}, 
+		usuario: {login: "caio666", senha: "666999", ultimoLogin: "6/6/2006"}
+ 	},
+ 	
+ 	{
+		nome: "Leticia Arias", 
+		telefone: "139987778844", 
+		cpf: "11122233344", 
+		cargo: {descricao: "secretaria", salario: 2500.00, comissao: 0.0}, 
+		usuario: {login: "leleu", senha: "777444", ultimoLogin: "2/6/2006"}
+ 	},
+ 	
+ 	{
+		nome: "Isadora Araujo", 
+		telefone: "139780007777", 
+		cpf: "777777444444", 
+		cargo: {descricao: "frentista", salario: 1830.00, comissao: 3.0}, 
+		usuario: {login: "isa", senha: "222222", ultimoLogin: "12/6/2006"}
+ 	}
+]);
+
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("638d7ae6608fc8428d748a13"),
+     '1': ObjectId("638d7ae6608fc8428d748a14"),
+     '2': ObjectId("638d7ae6608fc8428d748a15") } }
+
+  
+db.funcionario.updateOne
+(
+  	{nome: "Caio Cesar"}, 
+  	{$set: {nome: "Caio Mekacheski", cargo: {descricao: "Programador Junior", salario: 3500.00, comissao: 0.0}}}
+);
+  
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+
+  
+db.funcionario.find({nome: "Isadora Araujo"})
+  
+{ _id: ObjectId("638d7ae6608fc8428d748a15"),
+  nome: 'Isadora Araujo',
+  telefone: '139780007777',
+  cpf: '777777444444',
+  cargo: { descricao: 'frentista', salario: 1830, comissao: 3 },
+  usuario: { ultimoLogin: '12/6/2006' } }
+  
+  
+db.funcionario.find({"cargo.descricao": "secretaria"})
+  
+{ _id: ObjectId("638d7ae6608fc8428d748a14"),
+  nome: 'Leticia Arias',
+  telefone: '139987778844',
+  cpf: '11122233344',
+  cargo: { descricao: 'secretaria', salario: 2500, comissao: 0 },
+  usuario: { ultimoLogin: '4/6/2006' } }
