@@ -1,3 +1,5 @@
+#Comandos básicos mondodb
+
 use atividade5;
 
 'switched to db atividade5'
